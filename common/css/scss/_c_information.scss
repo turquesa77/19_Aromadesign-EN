@@ -1,0 +1,86 @@
+/* Scss Document */
+
+// information ------------------------------
+.information {
+	// スクロールバーのデザイン for google, safari
+	::-webkit-scrollbar{
+		width: 10px;
+	}
+	::-webkit-scrollbar-track{
+		background: white;
+		border: none;
+		border-radius: 10px;
+		box-shadow: inset 0 0 2px #777;
+	}
+	::-webkit-scrollbar-thumb{
+		background-color: #E0E0E0;
+		border-radius: 10px;
+		box-shadow: none;
+	}
+	
+	background: white;
+	&--inner {
+		display: flex;
+		flex-flow: row;
+		align-items: center;
+		padding: 20px;
+		&:before {
+			content: "";
+			display: block;
+			width: 0;
+			min-height: 100px;
+		}
+		@include media(sp) {
+			width: 100%;
+			flex-flow: column;
+			&:before {
+				min-height: 0;
+			}
+		}
+	}
+	&__title {
+		width: 20%;
+		padding-right: 4em;
+		white-space: nowrap;
+		@include media(sp) {
+			width: 100%;
+			text-align: center;
+			padding-right: 0;
+			padding-bottom: 1em;
+		}
+	}
+	&__body {
+		padding-left: 4em;
+		border-left: 1px solid $color-sub1;
+		overflow-y: auto;
+		max-height: 200px;
+		@include media(sp) {
+			padding-left: 0;
+			padding-right: 0;
+			border-left: none;
+		}
+		dt {
+			clear: both;
+			float: left;
+			width: 7em;
+			@include media(sp) {
+				float: none;
+			}
+		}
+		dd {
+			margin-left: 7em;
+			@include media(sp) {
+				margin-left: 0;
+				margin-bottom: 1em;
+			}
+			a {
+				@include hoverUnderline;
+			}
+		}
+	}
+	&__new {
+		color: red;
+		margin-right: 10px;
+		font-style: italic;
+	}
+}

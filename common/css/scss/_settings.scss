@@ -1,0 +1,155 @@
+/* Scss Document */
+
+@charset "UTF-8";
+
+// ============================================
+// サイトの基本設定
+// ============================================
+
+// 幅関係の設定 ------------------------------
+
+	$width-base: 1200px; //全体
+	$width-main: 900px; //メインエリアの幅
+
+// フォント関係の設定 ------------------------------
+
+	// 日本語
+	//@import url(http://fonts.googleapis.com/earlyaccess/notosansjp.css);
+	//$font-base-JP: "Noto Sans JP", "游ゴシック Medium", "Yu Gothic Medium", "游ゴシック", "Yu Gothic", "游ゴシック体", YuGothic, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", Sans-Serif;
+	
+	// 英語 Open Sans
+	@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+	$font-base-EN: 'Open Sans', "游ゴシック Medium", "Yu Gothic Medium", "游ゴシック", "Yu Gothic", "游ゴシック体", YuGothic, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", Sans-Serif;
+	
+	// 英語 Oswald
+	//@import url('https://fonts.googleapis.com/css?family=Oswald');
+	//$font-base-EN-Oswald: 'Oswald', 'Open Sans', "游ゴシック Medium", "Yu Gothic Medium", "游ゴシック", "Yu Gothic", "游ゴシック体", YuGothic, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", Sans-Serif;
+
+	// 英語　Montserrat
+	//@import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700,800,900');
+	//$font-base-EN-Mont: 'Montserrat', 'Open Sans', "游ゴシック Medium", "Yu Gothic Medium", "游ゴシック", "Yu Gothic", "游ゴシック体", YuGothic, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", Sans-Serif;
+
+	// 英語　Roboto
+	@import url('https://fonts.googleapis.com/css?family=Roboto:400,500,700');
+	$font-base-EN-Roboto: 'Roboto', 'Open Sans', "游ゴシック Medium", "Yu Gothic Medium", "游ゴシック", "Yu Gothic", "游ゴシック体", YuGothic, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", Sans-Serif;
+
+	// Font Weight for Noto Sans JP
+	$fontweight: (
+		r: "400", // regular
+		m: "500", // medium
+		l: "700", // bold
+		ll: "900", // black
+	);
+	@mixin font-weight($weight) {
+		font-weight: #{map-get($fontweight, $weight)};
+	}
+	/* 記述例
+	p {
+		@include font-weight(l);
+	}
+	*/
+
+	@mixin font-size($size, $base: 16) {
+	  font-size: $size + px;
+	  font-size: ($size / $base) + rem;
+	}
+	/* 記述例
+	p {
+	  @include font-size(12);
+	}*/
+
+// 色関係の設定 ------------------------------
+
+	// サイトカラー
+	$color-main: #738f11;
+	$color-sub1: #000000; // font
+	$color-sub2: #f9faf5; // bg
+	$color-type01: #0e9bcf; // blue
+	$color-type02: #566b0d; // green
+	$color-type03: #273106; // dark green
+	$color-type04: #9cc217; // light green
+	$color-type05: #f55745; // light red
+	
+	// old------------------------------
+	$color-sub: yellow; // not use
+	// フォントカラー
+	$color-font: yellow; // not use
+	// リンクカラー
+	$color-link: yellow; // not use
+	// 背景カラー
+	$color-bg: yellow; // not use
+	// Inqury
+	$color-inqury: yellow; // not use
+	// Access
+	$color-access: yellow; // not use
+	// JPN
+	$color-jpn: yellow; // not use
+	// その他
+	$color-gy: #cccccc; // grey
+	
+// ブレイクポイント ------------------------------
+
+	$breakpoints: (
+		sp: "screen and (max-width: 768px)", // 768px以下(iPad縦, iPhone横)
+		pc: "screen and (min-width: 769px)", // 769px以上
+
+		xxs:	"screen and (max-width: 320px)", // 320px以下（iPhone SE）
+		xs:	"screen and (max-width: 414px)", // 414px以下（Android縦, iPhone縦）
+		s:	"screen and (max-width: 834px)", // 834px以下（Android横, iPhone横, iPad縦）
+		m:	"screen and (max-width: 959px)", // 959px以下（PC, iPhone XR横, iPhone XS Max横）
+		l:	"screen and (max-width: 1059px)", // 1059px以下（PC, iPad横, iPad Pro縦）
+		xl:	"screen and (max-width: 1199px)", // 1199px以下（PC, iPad Pro横）
+		xxl:	"screen and (min-width: 1200px)", // 1200px以上（PC大画面）
+	);
+	@mixin media($breakpoint) {
+		@media #{map-get($breakpoints, $breakpoint)} {
+			@content;
+		}
+	}
+	/* 記述例
+	@include media(sp) {
+		background-color: green;
+	}*/
+
+// パス ------------------------------
+
+	$imgDir: "../img/"; //imageディレクトリ
+
+// ============================================
+// Style
+// ============================================
+
+// Common ------------------------------
+
+html {
+	font-size: 16px;
+}
+body {
+	font-family: $font-base-EN;
+	font-weight: 400;
+	color: $color-sub1;
+	line-height: 1.5;
+	background: $color-sub2;
+}
+img {
+	max-width: 100%;
+	height: auto;
+}
+
+// Layout ------------------------------
+
+*,
+*::after {
+	box-sizing: border-box;
+}
+.l-inner {
+	min-width: 320px;
+	max-width: $width-base;
+	width: 100%;
+	margin: 0 auto;
+	&:after {
+		content: "";
+		clear: both;
+		display: block;
+	}
+}

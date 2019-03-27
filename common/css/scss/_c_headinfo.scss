@@ -1,0 +1,133 @@
+/* Scss Document */
+
+// headInfo ------------------------------
+.headInfo {
+	background-color: white;
+	.l-inner:after { // for reset
+		content: none; // for justify-content: space-between;
+	}
+	&--inner {
+		display: flex;
+		flex-flow: row nowrap;
+		justify-content: space-between;
+		// SNSアイコンを使用する場合、1040px幅以下は縦表示
+		@media screen and (max-width: 1040px) {
+			flex-flow: row wrap;
+			justify-content: center;
+			padding: 5px;
+		}
+		@include media(sp) {
+			flex-flow: row wrap;
+			justify-content: center;
+			padding: 5px;
+		}
+	}
+	&__logo {
+		margin: 27px 20px 0px 0px;
+		@include media(sp) {
+			margin: 10px;
+		}
+		img {
+			width: 400px;
+			@include media(sp) {
+				width: 250px;
+			}
+		}
+	}
+	&__date {
+		margin: 10px 0;
+		line-height: 2;
+		@include media(sp) {
+			margin-top: 0;
+			line-height: 1.5;
+			@include font-size(14);
+			text-align: center;
+		}
+	}
+	&__sns {
+		margin-top: 28px;
+		margin-left: 30px;
+		@include media(sp) {
+			margin: 10px 10px 0;
+		}
+		li {
+			display: inline-block;
+			width: 30px;
+			+ li {
+				margin-left: 10px;
+			}
+		}
+	}
+	&__jma {
+		margin-top: 15px;
+		margin-left: auto;
+		margin-right: 30px;
+		// SNSアイコンを使用する場合、1155px幅以下は非表示
+		@media screen and (max-width: 1155px) {
+			display: none;
+		}
+		@include media(sp) {
+			display: none;
+		}
+		li {
+			a {
+				display: inline-block;
+				border-radius: 2px;
+				padding: 2px 6px;
+				width: 9em;
+				@include font-size(10);
+				line-height: 1.8;
+			}
+			&:nth-child(1) {
+				margin-bottom: 5px;
+				a {
+					background: #0093cf;
+					color: #fff;
+				}
+			}
+			&:nth-child(2) {
+				a {
+					border: 1px solid #0093cf;
+					background: #fff;
+					color: #0093cf;
+				}
+			}
+		}
+	}
+	&__btn {
+		width: 300px;
+		display: flex;
+		flex-flow: row nowrap;
+		@include media(sp) {
+			width: 100%;
+			margin-top: 5px;
+		}
+		li {
+			width: 100px;
+			display: flex;
+			align-items: center;
+			@include hoverOpc;
+			@include media(sp) {
+				width: calc(100% / 3);
+			}
+			&:nth-child(1) {
+				background-color: $color-main;
+			}
+			&:nth-child(2) {
+				background-color: $color-type02;
+			}
+			&:nth-child(3) {
+				background-color: $color-type03;
+			}
+			a {
+				display: block;
+				width: 100%;
+				color: white;
+				text-align: center;
+				@include media(sp) {
+					@include font-size(16);
+				}
+			}
+		}
+	}
+}

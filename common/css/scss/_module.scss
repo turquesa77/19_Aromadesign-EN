@@ -1,0 +1,586 @@
+/* Scss Document */
+
+// ============================================
+// Space
+// ============================================
+
+@mixin space {
+	padding: 50px 0 50px;
+	@include media(sp) {
+		padding: 30px 0 30px;
+	}
+}
+@mixin space-s {
+	padding: 30px 0 30px;
+	@include media(sp) {
+		padding: 15px 0 15px;
+	}
+}
+@mixin space-top {
+	padding-top: 50px;
+	@include media(sp) {
+		padding-top: 30px;
+	}
+}
+@mixin space-btm {
+	padding-bottom: 50px;
+	@include media(sp) {
+		padding-bottom: 30px;
+	}
+}
+@mixin space-btm2 {
+	padding-bottom: 80px;
+	@include media(sp) {
+		padding-bottom: 50px;
+	}
+}
+
+// インデント（2行目以降をn文字下げる）
+@mixin indent($ind: 1) {
+	padding-left: #{$ind}em;
+	text-indent: -#{$ind}em;
+}
+
+// 余白クラス（0～100px）
+$num: 5; // 繰上げ単位
+@for $i from 0 through 20 {
+	.mt#{$i * $num} {
+		margin-top: #{$i * $num}px;
+	}
+	.mb#{$i * $num} {
+		margin-bottom: #{$i * $num}px;
+	}
+	.pt#{$i * $num} {
+		padding-top: #{$i * $num}px;
+	}
+	.pb#{$i * $num} {
+		padding-bottom: #{$i * $num}px;
+	}
+}
+
+// ============================================
+// Link
+// ============================================
+
+a {
+	color: darken($color-type01, 10%);
+	text-decoration: none;
+	outline: none;
+}
+
+/* ---------画像・テキスト共通--------- */
+// 透過アニメーション
+@mixin hoverOpc {
+	transition: opacity 0.3s ease;
+	&:hover {
+		opacity: 0.5;
+	}
+}
+
+/* ---------テキスト対象--------- */
+// 下線：left to right
+@mixin hoverUnderline {
+	position: relative;
+	display: inline-block;
+	&::after {
+		position: absolute;
+		bottom: -1px;
+		left: 0;
+		content: '';
+		width: 100%;
+		height: 1px;
+		background: $color-main;
+		transform: scale(0, 1);
+		transform-origin: left top;
+		transition: transform .3s;
+	}
+	&:hover::after {
+		transform: scale(1, 1);
+	}
+}
+// 下線：上からアニメーション
+@mixin hoverFadeTop {
+	position: relative;
+	display: inline-block;
+	text-decoration: none;
+	&::after {
+		position: absolute;
+		bottom: 2px;
+		left: 0;
+		content: '';
+		width: 100%;
+		height: 2px;
+		background: $color-main;
+		opacity: 0;
+		visibility: hidden;
+		transition: .3s;
+	}
+	&:hover::after {
+		bottom: -4px;
+		opacity: 1;
+		visibility: visible;
+	}
+}
+// 下線：下からアニメーション
+@mixin hoverFadeBottom {
+	position: relative;
+	display: inline-block;
+	text-decoration: none;
+	&::after {
+		position: absolute;
+		bottom: -8px;
+		left: 0;
+		content: '';
+		width: 100%;
+		height: 2px;
+		background: $color-main;
+		opacity: 0;
+		visibility: hidden;
+		transition: .3s;
+	}
+	&:hover::after {
+		bottom: -4px;
+		opacity: 1;
+		visibility: visible;
+	}
+}
+// 下線：センターからアニメーション
+@mixin hoverCenter {
+	position: relative;
+	display: inline-block;
+	text-decoration: none;
+	&::after {
+		position: absolute;
+		bottom: -4px;
+		left: 0;
+		content: '';
+		width: 100%;
+		height: 2px;
+		background: $color-main;
+		transform: scale(0, 1);
+		transform-origin: center top;
+		transition: transform .3s;
+	}
+	&:hover::after {
+		transform: scale(1, 1);
+	}
+}
+
+/* ---------画像対象--------- */
+// zoomアニメーション
+@mixin hoverZoom {
+	img {
+		transform: scale(1);
+		transition: .3s ease-in-out;
+		//transition: 2s ease-in-out; // long ver.
+	}
+	&:hover img {
+		transform: scale(1.2);
+		//transform: scale(1.4); // long ver.
+	}
+}
+// shineアニメーション
+@mixin hoverShine {
+	figure {
+		position: relative;
+		&::before {
+			position: absolute;
+			top: 0;
+			left: -75%;
+			z-index: 2;
+			display: block;
+			content: '';
+			width: 50%;
+			height: 100%;
+			background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,.3) 100%);
+			transform: skewX(-25deg);
+		}
+		&:hover::before {
+			animation: shine .75s;
+		}
+	}
+	@-webkit-keyframes shine {
+		100% {
+			left: 125%;
+		}
+	}
+	@keyframes shine {
+		100% {
+			left: 125%;
+		}
+	}
+}
+
+/* ---------リンク無効--------- */
+%nolink-base {
+	pointer-events: none;
+	cursor: default;
+}
+.nolink {
+	a {
+		@extend %nolink-base;
+		opacity: 0.5;
+	}
+}
+.nolink-bg {
+	background-color: $color-gy !important;
+	a {
+		@extend %nolink-base;
+	}
+}
+.nolink2 {
+	a {
+		@extend %nolink-base;
+	}
+}
+
+// ============================================
+// Button
+// ============================================
+
+.btn a {
+	display: block;
+	background-color: $color-main;
+	color: white;
+	padding: 20px;
+	text-align: center;
+	@include font-size(22);
+	border: 1px solid transparent;
+	transition: all 0.3s ease;
+	&:hover {
+		background-color: white;
+		border: 1px solid $color-main;
+		color: $color-main;
+	}
+}
+
+// ============================================
+// Title
+// ============================================
+
+$space-title-btm: 40px;
+
+// Underline-1
+.title1 {
+	text-align: center;
+	margin-bottom: $space-title-btm;
+	&__head {
+		display: inline-block;
+		@include font-size(34);
+		font-weight: 400;
+		color: $color-sub1;
+		position: relative;
+		padding-left: 10px;
+		padding-right: 10px;
+		box-sizing: border-box;
+		position: relative; // for new
+		@include media(sp) {
+			@include font-size(28);
+		}
+		&:before{
+			content: "";
+			width: 100%;
+			height: 5px;
+			position: absolute;
+			bottom: 7px;
+			left: 0px;
+			background-color: rgba($color-type01, 0.5);
+			z-index: -1;
+		}
+		&__new {
+			color: red;
+			@include font-size(26);
+			position: absolute;
+			top: -25px;
+			left: -20px;
+			transform: rotate(-15deg);
+		}
+		br {
+			display: none;
+			@include media(sp) {
+				display: inline-block;
+			}
+		}
+	}
+}
+// title1を継承: 下層ページタイトル
+.subPage-title {
+	@extend .title1;
+	@include space;
+	margin-bottom: 0;
+}
+
+// Underline-2
+.title2 {
+	@include font-size(20); // JP 20px EN 28px
+	//font-family: $font-base-EN-Oswald;
+	font-weight: 400;
+	text-align: center;
+	margin-bottom: $space-title-btm;
+	&:after {
+		content: "";
+		display: block;
+		width: 100px;
+		height: 1px;
+		background-color: $color-sub1;
+		margin: 20px auto 0;
+	}
+}
+// title2を継承
+.title2-l {
+	@extend .title2;
+	@include font-size(28);
+	font-weight: bold;
+	&:after {
+		background-color: $color-type01;
+		height: 5px;
+	}
+}
+
+// Underline-3
+.title3 {
+	@include font-size(18);
+	font-weight: 400;
+	border-bottom: 3px solid $color-type04;
+	padding-bottom: 3px;
+	margin-bottom: $space-title-btm;
+	position: relative;
+	&:after {
+		position: absolute;
+		content: " ";
+		display: block;
+		border-bottom: 3px solid $color-type01;
+		bottom: -3px;
+		width: 30%;
+	}
+}
+// title3を継承: 下層ページの段落タイトル
+.subPage-mainTitle {
+	@extend .title3;
+	color: darken($color-type02, 10%);
+	@include font-size(26);
+}
+
+// Background-color
+.title4 {
+	color: white;
+	@include font-size(18);
+	font-weight: 400;
+	text-align: left;
+	background-color: $color-type01;
+	padding: 5px 10px;
+}
+
+// Border-left
+.title5 {
+	font-weight: 400;
+	@include font-size(18);
+	border-left: 5px solid $color-type01;
+	border-bottom: 1px solid $color-type01;
+	padding-left: 10px;
+	padding-bottom: 3px;
+	margin-bottom: 30px;
+}
+
+// ============================================
+// Arrow
+// ============================================
+
+@mixin arrow-down($color: $color-main, $size: 20px, $thick: 2px) {
+	content: "";
+	width: $size;
+	height: $size;
+	border: $thick solid;
+	border-color: transparent transparent $color $color;
+	transform: rotate(-45deg);
+}
+
+@mixin arrow-top($color: $color-main, $size: 20px, $thick: 2px) {
+	content: "";
+	width: $size;
+	height: $size;
+	border: $thick solid;
+	border-color: $color $color transparent transparent;
+	transform: rotate(-45deg);
+}
+
+@mixin arrow-right($color: $color-main, $size: 20px, $thick: 2px) {
+	content: "";
+	width: $size;
+	height: $size;
+	border: $thick solid;
+	border-color: $color $color transparent transparent;
+	transform: rotate(45deg);
+}
+
+@mixin arrow-left($color: $color-main, $size: 20px, $thick: 2px) {
+	content: "";
+	width: $size;
+	height: $size;
+	border: $thick solid;
+	border-color:  transparent transparent $color $color;
+	transform: rotate(45deg);
+}
+
+// 矢印 - 三角
+@mixin trigone-down($color: $color-main) {
+	content: "";
+	display: block;
+	width: 0;
+	border-top: 20px solid $color;
+	border-right: 15px solid transparent;
+	border-left: 15px solid transparent;
+	margin: auto;
+	margin-left: -10px;
+}
+
+// ============================================
+// Icon
+// ============================================
+
+// 外部リンクアイコン（Google Material Icon）
+.linkOut {
+	@include font-size(14);
+	padding-left: 5px;
+}
+.message {
+	@include font-size(18);
+	padding-left: 5px;
+}
+.arrowRight {
+	@include font-size(18);
+	padding-left: 5px;
+}
+
+// ============================================
+// Card
+// ============================================
+
+@mixin cardInner {
+	//max-width: $width-main;
+	max-width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	.cardImg {
+		flex: 0 0 50%;
+		width: 50%;
+		background-size: cover;
+		overflow: hidden;
+		position: relative;
+		@include media(sp) {
+			flex: 0 0 100%;
+			width: 100%;
+			height: 250px;
+		}
+		&:after {
+			content: "";
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			top: 0;
+			right: -100%;
+			background-color: white;
+		}
+	}
+	.cardTxt {
+		flex-basis: 0;
+		flex-grow: 1;
+		max-width: 100%;
+		color: white;
+		@include font-size(18);
+		background-color: darken($color-type01, 6%);
+		padding: 50px;
+		@include media(sp) {
+		padding: 30px;
+		}
+		&--inner {
+			text-align: left;
+			line-height: 1.5;
+		}
+		&__btn {
+			display: inline-block;
+			a {
+				display: block;
+				width: 100%;
+				color: white;
+				font-family: 'Times New Roman', 'serif';
+				border: 1px solid white;
+				padding: 9px 70px;
+				transition: all 0.3s ease;
+				&:hover {
+					color: $color-main;
+					background: white;
+					i {
+						color: $color-main;
+					}
+				}
+			}
+		}
+	}
+}
+
+// ============================================
+// Table style
+// ============================================
+
+.tableBase {
+	width: 100%;
+	margin: 0 auto;
+	border-collapse: separate;
+	border-spacing: 0px 5px;
+	tr {
+		th, td {
+			padding: 15px;
+			vertical-align: middle;
+			@include media(sp) {
+				display: block;
+				width: 100%;
+			}
+		}
+		th {
+			background-color: $color-main;
+			color: white;
+			font-weight: 400;
+			@include font-size(17);
+		}
+		td {
+			background-color: lighten($color-main, 67%);
+			@include media(sp) {
+				margin-bottom: 5px;
+			}
+		}
+	}
+}
+
+// ============================================
+// Page navi
+// ============================================
+
+.pageNav {
+	&__list {
+		display: flex;
+		flex-flow: row wrap;
+		justify-content: space-between;
+		align-items: center;
+		@include media(sp) {
+			justify-content: space-around;
+		}
+		li {
+			background-color: $color-main;
+			margin-bottom: 5px;
+			position: relative;
+			@include hoverOpc;
+			a {
+				color: white;
+				display: block;
+				width: 100%;
+				padding: 8px 35px 8px 20px;
+				i {
+					position: absolute;
+					top: 9px;
+					right: 8px;
+				}
+			}
+		}
+	}
+}

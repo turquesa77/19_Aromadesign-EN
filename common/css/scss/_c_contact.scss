@@ -1,0 +1,91 @@
+/* Scss Document */
+
+// contact ------------------------------
+.contact {
+	@mixin btnStyle {
+		display: block;
+		width: 100%;
+		color: white;
+		background: $color-main;
+		padding: 20px 0;
+		text-align: center;
+		@include font-size(30);
+		border-radius: 10px;
+		@include hoverOpc;
+		@include media(sp) {
+			@include font-size(21);
+		}
+	}
+	@mixin btnStyle-s {
+		@include btnStyle;
+		@include font-size(26);
+		padding: 15px;
+		border-radius: 15px;
+	}
+
+	@include space;
+	background: url(#{$imgDir}contact_img.jpg) 40% 35% no-repeat #ccc;
+	&--inner {
+		@include media(sp) {
+			padding-left: 10px;
+			padding-right: 10px;
+		}
+	}
+	&__center {
+		text-align: center;
+	}
+	&__desc {
+		font-weight: bold;
+	}
+	&__name {
+		@include font-size(28);
+		color: $color-type01;
+		@include media(sp) {
+			@include font-size(22);
+		}
+	}
+	&__address {
+		@include font-size(14);
+	}
+	&__linkArea {
+		display: flex;
+		flex-flow: row;
+		justify-content: space-around;
+		align-items: center;
+		max-width: 700px;
+		margin: 0 auto 30px;
+		@include media(sp) {
+			flex-flow: column;
+		}
+	}
+	&__phone {
+		@include font-size(18);
+		@include media(sp) {
+			margin-bottom: 20px;
+		}
+		span a {
+			display: inline-block;
+			@include font-size(34);
+			font-weight: bold;
+			color: $color-type01;
+			margin-bottom: 10px;
+			@include media(sp) {
+				@include font-size(28);
+			}
+		}
+	}
+	&__web {
+		a {
+			display: block;
+			width: 100%;
+			background-color: $color-type01;
+			color: white;
+			padding: 15px 25px;
+			@include font-size(18);
+			@include hoverOpc;
+			@include media(sp) {
+				padding: 10px 15px;
+			}
+		}
+	}
+}

@@ -1,0 +1,136 @@
+/* Scss Document */
+
+// footer ------------------------------
+$footer-column: 3; // フッターの列数
+$footer-nav-space: 30px; // フッターナビ間のスペース(PC)
+$footer-nav-space-sp: 15px; // フッターナビ間のスペース(SP)
+
+.footer {
+	@include space-top;
+	padding-bottom: 20px;
+	background-color: darken($color-type01 ,15%);
+	color: white;
+	&--inner {
+		max-width: $width-main;
+		display: flex;
+		flex-flow: row wrap;
+		@include media(sp) {
+			flex-flow: column;
+			padding-left: 20px;
+		}
+	}
+	&__unit {
+		width: calc(100% / #{$footer-column});
+		padding-left: 20px;
+		padding-bottom: $footer-nav-space;
+		@include media(sp) {
+			width: 100%;
+			padding-bottom: $footer-nav-space-sp;
+		}
+		// a link 共通
+		a {
+			color: white;
+			position: relative;
+			&:before {
+				position: absolute;
+				top: 8px;
+				left: -30px;
+				@include arrow-right(white, 10px, 1px);
+			}
+		}
+	}
+	&__col {
+		> li {
+			margin-top: $footer-nav-space;
+			@include media(sp) {
+				margin-top: $footer-nav-space-sp;
+			}
+			&:first-child {
+				margin-top: 0;
+			}
+			> a {
+				@include font-size(18);
+			}
+		}
+	}
+	&__tgl {
+		&--title {
+			pointer-events: none;
+			@include media(sp) {
+				pointer-events: all;
+				cursor: pointer;
+			}
+			a {
+				@include font-size(18);
+			}
+		}
+		&--list {
+			margin-top: 10px;
+			@include media(sp) {
+				display: none;
+			}
+			ul li {
+				margin-top: 3px;
+				a {
+					@include font-size(13);
+					@include hoverOpc;
+					&:before {
+						top: 4px; // arrow-right
+						@include media(sp) {
+							content: none;
+						}
+					}
+				}
+			}
+		}
+	}
+	&__logo {
+		text-align: center;
+		margin-bottom: 10px;
+		a + a {
+			margin-left: 20px;
+		}
+		img {
+			width: 100px;
+		}
+		&__jbma img {
+			width: 90px;
+		}
+	}
+	&__copyright {
+		text-align: center;
+		@include font-size(12);
+	}
+}
+
+#page-top {
+	position: fixed;
+	bottom: 20px;
+	right: 20px;
+	a {
+		display: block;
+		width: 70px;
+		@include hoverOpc;
+		@include media(sp) {
+			width: 45px;
+		}
+	}
+}
+.page-top-link {
+	text-align: right;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	a {
+		display: inline-block;
+		background-color: $color-main;
+		color: white;
+		padding: 3px 15px 3px 35px;
+		position: relative;
+		@include hoverOpc;
+		i {
+			position: absolute;
+			top: 5px;
+			left: 5px;
+		}
+	}
+}

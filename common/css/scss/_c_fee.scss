@@ -1,0 +1,203 @@
+/* Scss Document */
+
+// booth ------------------------------
+.booth {
+	@include space;
+	&--inner {
+		max-width: $width-main;
+		@include media(sp) {
+			padding-left: 10px;
+			padding-right: 10px;
+		}
+	}
+	&__mainTitle {
+		margin-bottom: 50px;
+	}
+	&__head {
+		text-align: left;
+		padding-left: 10px;
+		padding-right: 10px;
+		background-color: $color-main;
+	}
+	&__titleDesc {
+		@include font-size(14);
+	}
+	&__titleDesc2 { // for option page
+		@include font-size(16);
+		font-weight: 500;
+		background-color: $color-type05;
+		border: 1px solid white;
+		border-radius: 15px;
+		padding: 1px 10px;
+		margin-left: 50px;
+		@include media(sp) {
+			display: inline-block;
+			margin-left: 10px;
+		}
+	}
+	&__body {
+		background-color: white;
+		padding: 30px;
+		display: flex;
+		flex-flow: row;
+		justify-content: space-between;
+		border: 1px solid $color-main;
+		@include media(sp) {
+			flex-flow: column;
+			padding: 15px;
+		}
+		&--left {
+			width: 60%;
+			@include media(sp) {
+				width: 100%;
+				margin-bottom: 30px;
+			}
+		}
+		&--right {
+			width: 40%;
+			text-align: center;
+			padding-left: 30px;
+			@include media(sp) {
+				width: 100%;
+				padding-left: 0;
+			}
+		}
+	}
+	&__subTitle {
+		border-left: 5px solid $color-main;
+		padding-left: 5px;
+		margin-bottom: 20px;
+	}
+	&__list {
+		@include font-size(14);
+		line-height: 1.8;
+		li {
+			margin-bottom: 10px;
+			@include indent(1);
+			&:before {
+				content: "●";
+				color: $color-main;
+				margin-right: 5px;
+			}
+		}
+		&__title {
+			font-weight: bold;
+			color: $color-main;
+		}
+		&__red {
+			color: red;
+		}
+	}
+	&__append {
+		@include font-size(14);
+		margin-top: 30px;
+	}
+	&__append2 { // for option page
+		@include font-size(13);
+		li {
+			@include indent(1);
+		}
+	}
+	&__fig {
+		max-width: 300px;
+		margin: 0 auto 20px;
+	}
+	&__example {
+		display: inline-block;
+		background-color: $color-main;
+		color: white;
+		padding: 5px 20px;
+		border-radius: 10px;
+	}
+	&__figTxt {
+		@include font-size(14);
+		text-align: left;
+		margin-top: 20px;
+	}
+	&__price { // for option page
+		@include font-size(20);
+		font-weight: bold;
+		@include media(sp) {
+			@include font-size(18);
+		}
+	}
+}
+
+// fee ------------------------------
+@mixin fee-table($theme: $color-main) {
+	width: 100%;
+	border: 1px solid $theme;
+	background-color: white;
+	tr {
+		th, td {
+			border: 1px solid $theme;
+			@include font-size(18);
+		}
+		th {
+			background-color: $theme;
+			color: white;
+			font-weight: 500;
+			padding: 10px;
+			vertical-align: middle;
+		}
+		td {
+			text-align: center;
+			padding: 20px;
+		}
+	}
+	.fee-table__categ {
+		background-color: lighten($theme, 70%);
+	}
+}
+
+.fee {
+	$color-fee-orange: #F47632;
+	
+	@include space-btm;
+	&--inner {
+		max-width: $width-main;
+		@include media(sp) {
+			padding-left: 10px;
+			padding-right: 10px;
+		}
+	}
+	&__head {
+		display: flex;
+		flex-flow: row wrap;
+		justify-content: flex-start;
+		align-items: center;
+		margin-bottom: 15px;
+	}
+	&__title {
+		border-left: 5px solid $color-type01;
+		padding-left: 5px;
+		@include font-size(18);
+		color: $color-type01;
+		font-weight: 500;
+		margin-right: 20px;
+		&2 {
+			color: $color-fee-orange;
+			border-left: 5px solid $color-fee-orange;
+		}
+	}
+	&__tblContainer {
+		width: 100%;
+		overflow: auto;
+		white-space: nowrap;
+	}
+	&__tbl {
+		@include fee-table($color-type01);
+	}
+	&__tbl2 {
+		@include fee-table($color-fee-orange);
+		.fee-table__categ {
+			background-color: lighten($color-fee-orange, 35%);
+		}
+	}
+	&__tbl3 {
+		@include fee-table($color-main);
+		.fee-table__categ {
+			background-color: white;
+		}
+	}
+}

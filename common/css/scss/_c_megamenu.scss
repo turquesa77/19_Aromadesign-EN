@@ -1,0 +1,234 @@
+/* 
+- Name: megamenu.js - style.css
+- Version: 1.0
+- Latest update: 29.01.2016.
+- Author: Mario Loncarek
+- Author web site: http://marioloncarek.com
+*/
+/* ––––––––––––––––––––––––––––––––––––––––––––––––––
+megamenu.js STYLE STARTS HERE
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+/* ––––––––––––––––––––––––––––––––––––––––––––––––––
+Screen style's
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+// 変数
+$nav-column: 4; // グローバルメニューの列数
+
+// メニュー区切り線：右
+@mixin partition-line-right {
+	&:after {
+		content: "";
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		right: 1px;
+		z-index: 100;
+		margin: auto 0;
+		background: white;
+		width: 1px;
+		height: 20px;
+		display: block;
+	}
+}
+
+.menu-container {
+	width: 100%;
+	margin: 0 auto;
+}
+
+.menu-mobile {
+	display: none;
+	padding: 20px;
+	background-color: darken($color-type01, 5%);
+	color: white;
+	@include media(m) {
+		display: block;
+	}
+	// mobile menu icon
+	&:after {
+		content: url(#{$imgDir}icon_menu.png);
+		width: 32px;
+		height: 32px;
+		padding: 0;
+		float: right;
+		position: relative;
+		top: 50%;
+		transform: translateY(-15%);
+	}
+}
+
+.menu-dropdown-icon:before {
+	content: url(#{$imgDir}icon_arrow_down.png);
+	width: 32px;
+	height: 32px;
+	display: none;
+	cursor: pointer;
+	float: right;
+	padding-top: 10px;
+	padding-right: 20px;
+	@include media(m) {
+		display: block;
+	}
+}
+
+.menu > ul { // 大メニュー
+	position: relative;
+	width: 100%;
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: space-between;
+	list-style: none;
+	background: darken($color-type01, 5%);
+	margin: 0 auto;
+	padding: 0;
+	/* IF .menu position=relative -> ul = container width, ELSE ul = 100% width */
+	box-sizing: border-box;
+	@include media(m) {
+		display: none;
+		flex-flow: column;
+		&.show-on-mobile {
+			display: block;
+		}
+	}
+	&:before {
+		content: "";
+		display: table;
+	}
+	&:after {
+		content: "";
+		display: table;
+		clear: both;
+	}
+	> li { // 大メニューの各ナビ
+		width: calc(100% / #{$nav-column});
+		transition: 0.3s ease;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		position: relative;
+		@include partition-line-right;
+		&:last-child {
+			&:after {
+				content: none;
+			}
+		}
+		@include media(m) {
+			width: 100%;
+			display: block;
+			&:after {
+				content: none;
+			}
+			/*br {
+				display: none;
+			}*/
+		}
+		a {
+			display: block;
+			padding: 15px 0;
+			@include font-size(17); // JP 15px EN 17px
+			font-weight: 400;
+			color: white;
+			text-align: center;
+			width: 100%;
+			@include media(m) {
+				text-align: left;
+				padding: 15px 10px;
+			}
+		}
+		> ul { // ドロップダウンメニュー
+			display: none;
+			position: absolute;
+			top: 55px;
+			left: 0;
+			width: 100%;
+			background: darken($color-type01, 5%);
+			padding: 20px;
+			margin: 0;
+			z-index: 99;
+			box-sizing: border-box;
+			@include media(m) {
+				padding: 0 10px 10px;
+				position: relative;
+				top: 0;
+				&.normal-sub {
+					width: 100%;
+				}
+			}
+			&:before {
+				content: "";
+				display: table;
+			}
+			&:after {
+				content: "";
+				display: table;
+				clear: both;
+			}
+			> li { // ドロップダウンメニュー内の各ナビタイトル
+				float: left;
+				width: calc(100% / #{$nav-column});
+				@include media(m) {
+					float: none;
+					width: 100%;
+				}
+				a {
+					display: block;
+					width: 100%;
+					text-align: left;
+					border-bottom: 1px solid rgba(white, 0.4);
+					font-weight: 400;
+					line-height: 2;
+					@include font-size(14);
+					@include hoverOpc;
+					@include media(m) {
+						line-height: 1;
+					}
+				}
+				/*
+				> ul { // ドロップダウンメニュー内の最小単位のナビ
+					display: block;
+					margin: 10px 0 0;
+					box-sizing: border-box;
+					@include media(m) {
+						position: relative;
+					}
+					&:before {
+						content: "";
+						display: table;
+					}
+					&:after {
+						content: "";
+						display: table;
+						clear: both;
+					}
+					> li {
+						float: left;
+						width: 100%;
+						@include font-size(13);
+						@include media(m) {
+							float: none;
+						}
+						a {
+							border: 0;
+							@include hoverUnderline;
+						}
+					}
+				}*/
+			}
+			// メインメニューホバー時に表示されるサブメニューul
+			&.normal-sub {
+				width: 300px; // サイズ指定する場合
+				//width: 100%; // 親メニューの幅と同じにする場合
+				//left: auto;
+				left: -20px;
+				@include media(m) {
+					width: 100%;
+					left: 0;
+				}
+				> li {
+					width: 100%;
+				}
+			}
+		}
+	}
+}

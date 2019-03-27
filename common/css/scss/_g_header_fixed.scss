@@ -1,0 +1,76 @@
+@charset "UTF-8";
+
+#global_link {
+	/*position: absolute;*/ /* 固定配置で問題なければ static に変更 */
+	position: static;
+	top: 0;
+	left: 0;
+	z-index: 9999;
+	width: 100%;
+	padding: 5px 0;
+	box-sizing: border-box;
+	background: rgba(0,0,0,0.8);
+	font-size: 12px !important;
+}
+
+#global_link a {
+	width: auto !important;
+	height: auto !important;
+	margin: 0 !important;
+	padding: 0 !important;
+	background: none !important;
+	color: #ccc !important;
+	font-size: 12px !important;
+	text-decoration: none !important;
+}
+#global_link a:hover { color: #fff !important;}
+
+#global_link ul {
+	display: flex !important;
+	align-items: center !important;
+	justify-content: flex-start !important;
+	//width: 1000px !important; /* コンテンツ固定幅があれば指定 */
+	max-width: 1200px; // for responsive
+	margin: 0 auto !important;
+	padding: 0 !important;
+	background: none !important;
+}
+
+#global_link li {
+	display: block !important;
+	width: auto !important;
+	height: auto !important;
+	margin: 0 8px !important;
+	padding: 0 !important;
+	background: none !important;
+	letter-spacing: 0.05em;
+}
+
+#global_link li:first-child {
+	margin: 0 8px 0 0 !important;
+	padding: 0 !important;
+	letter-spacing: 0 !important;
+}
+
+#global_link li:nth-of-type(2) {margin-left: auto !important;}
+#global_link li:last-of-type { margin-right: 0 !important;}
+
+
+#global_link li:not(:first-child) a {
+	display: inline-block !important;
+	position: relative;
+	padding: 0 0 0 10px !important;
+}
+
+#global_link li:first-child a img { width: auto; height: 30px;}
+#global_link li:first-child a:hover img { opacity: .7;}
+
+#global_link li:not(:first-child) a:before {
+	position: absolute;
+	left: 0;
+	top: 50%;
+	border: 4px solid transparent;
+	border-left: 5px solid #ccc;
+	transform: translateY(-50%);
+	content:'';
+}

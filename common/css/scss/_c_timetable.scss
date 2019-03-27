@@ -1,0 +1,80 @@
+/* Scss Document */
+
+// Time table ------------------------------
+.timeTable {
+	display: flex;
+	flex-flow: row wrap;
+	max-width: 100%;
+	@include media(sp) {
+		flex-flow: column;
+	}
+	&__date {
+		width: 30%;
+		background-color: $color-main;
+		color: white;
+		position: relative; // for arrow
+		padding: 20px;
+		margin-bottom: 50px;
+		@include media(sp) {
+			width: 100%;
+			margin-bottom: 0;
+		}
+	}
+	&__detail {
+		width: 70%;
+		background-color: $color-sub2;
+		padding: 20px;
+		margin-bottom: 50px;
+		@include media(sp) {
+			width: 100%;
+		}
+		> ul {
+			> li {
+				list-style-type: disc;
+				margin-left: 16px;
+			}
+		}
+		&--early {
+			color: red;
+			font-weight: 500;
+			span {
+				display: inline-block;
+				background-color: red;
+				color: white;
+				padding: 0 1em;
+			}
+		}
+		&--normal {
+			color: darkorange;
+			font-weight: 500;
+		}
+		&--current {
+			display: flex;
+			flex-wrap: wrap;
+			margin-top: 20px;
+			dt {
+				width: 15%;
+			}
+			dd {
+				width: 85%;
+			}
+		}
+		&--logo img {
+			max-width: 160px;
+			margin-right: 10px;
+		}
+		&__s {
+			@include font-size(14);
+		}
+		+ .timeTable__date:before {
+			@include arrow-down();
+			position: absolute;
+			top: -45px;
+			left: 165%;
+			@include media(sp) {
+				left: 48%;
+			}
+		}
+	}
+}
+

@@ -1,0 +1,123 @@
+/* Scss Document */
+
+// keyVisual ------------------------------
+.keyVisual {
+	width: 100%;
+	height: 500px;
+	overflow: hidden;
+	position: relative;
+	@include media(sp) {
+		height: 300px;
+	}
+	&__slider {
+		img {
+			max-width: none;
+		}
+	}
+	&__pop {
+		@mixin btn {
+			display: block;
+			width: 100%;
+			padding: 15px 30px;
+			border: 2px solid white;
+			color: white;
+			white-space: nowrap;
+			@include font-size(20);
+			@include hoverOpc;
+			@include media(sp) {
+				@include font-size(16);
+				text-align: center;
+				padding: 8px 15px;
+			}
+			&:hover {
+				opacity: 0.7;
+				
+			}
+		}
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%,-50%);
+		text-align: center;
+		&__01 {
+			max-width: 650px;
+			// 展示会概要の画像を画面幅によってサイズ調整
+			@media screen and (max-width:980px) {
+				width: 500px;
+			}
+			@media screen and (max-width:560px) {
+				width: 400px;
+			}
+			@media screen and (max-width:430px) {
+				width: 300px;
+			}
+
+		}
+		&__btn {
+			display: flex;
+			flex-flow: row;
+			justify-content: space-around;
+			//margin-top: 30px;
+			@include media(sp) {
+				display: none;
+			}
+			&__01 {
+				a {
+					@include btn;
+					background-color: $color-main;
+				}
+			}
+			&__02 {
+				a {
+					@include btn;
+					background-color: $color-type02;
+				}
+			}
+		}
+	}
+}
+
+// subVisual ------------------------------
+.subVisual {
+	height: 300px;
+	overflow: hidden;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: $color-main;
+	&__title {
+		@include font-size(46);
+		font-weight: 500;
+		color: white;
+		padding: 5px 30px;
+		text-align: center;
+		@include media(sp) {
+			@include font-size(30);
+		}
+		br {
+			display: none;
+			@include media(sp) {
+				display: inline-block;
+			}
+		}
+	}
+	&__new {
+		color: red;
+		@include font-size(40);
+		position: absolute;
+		top: -30px;
+		left: -20px;
+		transform: rotate(-15deg);
+		text-shadow: 2px 2px 10px white;
+		@include media(sp) {
+			left: 0;
+			top: -40px;
+		}
+	}
+}
+.subVisual {
+	background: url(#{$imgDir}bg_img01.jpg) center center /cover no-repeat $color-main;
+	&__title {
+		background: rgba($color-main, 0.8);
+	}
+}

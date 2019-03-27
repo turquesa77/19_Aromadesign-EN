@@ -1,0 +1,105 @@
+/* Scss Document */
+
+// download ------------------------------
+.download {
+	padding-bottom: 100px;
+	&--inner {
+		max-width: 800px;
+	}
+	&__lead {
+		margin-bottom: 50px;
+	}
+	&__attention {
+		margin-bottom: 80px;
+		border: 1px solid $color-sub1;
+		padding: 20px 20px 10px 20px;
+		@include media(sp) {
+			padding: 20px;
+		}
+		> li {
+			@include indent;
+			margin-bottom: 10px;
+			&:before {
+				content: "●";
+				color: $color-main;
+			}
+		}
+		&__sublist {
+			li {
+				@include indent;
+				margin-bottom: 3px;
+				&:before {
+					content: "・";
+				}
+			}
+		}
+	}
+	&__logo {
+		@include space-btm2;
+		display: flex;
+		flex-flow: row;
+		justify-content: space-between;
+		@include media(sp) {
+			flex-flow: column;
+		}
+		&__img {
+			width: 58%;
+			border: 1px solid #ccc;
+			padding: 20px;
+			@include media(sp) {
+				width: 100%;
+				max-width: 450px;
+				text-align: center;
+				margin: 0 auto 20px;
+			}
+		}
+		&__btn {
+			width: 40%;
+			@include media(sp) {
+				width: 100%;
+				max-width: 450px;
+				margin: 0 auto;
+			}
+			li {
+				margin-bottom: 20px;
+				@include media(sp) {
+					margin-bottom: 10px;
+				}
+				a {
+					@include font-size(16);
+					padding: 10px;
+				}
+			}
+		}
+	}
+	&__bnr {
+		display: flex;
+		flex-flow: row;
+		justify-content: space-around;
+		align-items: center;
+		margin: 30px 0;
+		@include media(sp) {
+			flex-flow: column;
+			margin-bottom: 50px;
+		}
+		figure {
+			@include media(sp) {
+				margin-bottom: 10px;
+			}
+		}
+		&__sourceCode {
+			max-width: 500px;
+			overflow: auto;
+			word-wrap: break-word;
+			border: 1px solid #ccc;
+			padding: 5px;
+			font-family: monospace, monospace;
+			@include media(sp) {
+				width: 100%;
+			}
+			pre {
+				margin-bottom: 10px;
+			}
+		}
+	}
+}

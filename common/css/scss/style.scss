@@ -1,0 +1,412 @@
+/* Scss Document */
+
+@charset "UTF-8";
+/*! ============================================
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+このCSSファイルはSassから生成されていますので、
+編集しないようご注意ください。
+※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※※
+============================================= */
+
+
+// --------------------------------------------
+// Style Guide
+// 基本的な考えは、OOCSSベース。
+// 
+// #命名規則
+// MindBEMdingをベースに以下のルールで記載。
+// block__element--modifier
+// ※Blockが複数単語になる場合は、「blockName」のようにキャメルケースにする。
+// ※分かりやすいクラス名は略名にする。
+// ※Block, Element, Modifierは、まとめて同じ箇所に記述する。
+// --------------------------------------------
+
+
+// ============================================
+// import css
+// ============================================
+
+//reset css
+@import "_base.scss";
+// "slick" slide show
+@import '_slick.scss';
+@import '_slick-theme.scss';
+// settings
+@import '_settings.scss';
+// module
+@import '_module.scss';
+// component
+@import '_g_header_fixed.scss'; // JMA menu
+@import '_c_headinfo.scss'; // headInfo in header
+@import '_c_megamenu.scss'; // megamenu in header
+@import '_c_keyvisual.scss'; // keyVisual
+@import '_c_information.scss'; // What's New
+@import '_c_contact.scss'; // contact in footer
+@import '_c_footer.scss'; // nav in footer
+@import '_c_timetable.scss'; // timeTable
+@import '_c_fee.scss'; // booth & fee
+@import '_c_visit.scss'; // visit
+@import '_c_download.scss'; // logo, banner download
+@import '_c_qanda.scss'; // FAQ
+
+
+// --------------------------------------------
+// Project
+// --------------------------------------------
+
+// JMA nav ------------------------------
+#global_link {
+	padding: 5px 10px;
+	@include media(sp) {
+		display: none;
+	}
+}
+
+// nav ------------------------------
+nav {
+	background-color: darken($color-type01, 5%);
+	box-shadow: 0px 9px 3px -3px rgba(black, 0.1);
+	position: relative; // for box-shadow
+	z-index: 2; // for box-shadow
+}
+
+// links ------------------------------
+.links {
+	@include space-btm;
+	&__title {
+		text-align: center;
+	}
+	&__body {
+		background-color: white;
+		//padding: 20px;
+		padding: 20px 20px 20px 50px;
+		overflow: hidden;
+		@include media(sp) {
+			padding: 20px;
+		}
+		li {
+			text-align: center;
+		}
+		a {
+			@include hoverOpc;
+		}
+	}
+}
+
+// lower ------------------------------
+.lower {
+	@include space;
+	background-color: white;
+	&--inner {
+		max-width: $width-main;
+		@include media(sp) {
+			padding-left: 10px;
+			padding-right: 10px;
+		}
+	}
+	&__photo {
+		max-width: 500px;
+		@include space;
+		margin: 0 auto 30px;
+		overflow: hidden;
+		img {
+			max-width: 500px;
+		}
+	}
+	&__btn {
+		max-width: 700px;
+		margin: 0 auto 80px;
+	}
+	@mixin define-style {
+		dt {
+			clear: left;
+			float: left;
+			@include media(sp) {
+				float: none;
+				width: 100%;
+			}
+		}
+	}
+	&__define {
+		max-width: 700px;
+		margin: 0 auto;
+		@include define-style;
+		dt {
+			width: 8em;
+			background-color: $color-main;
+			color: white;
+			padding: 7px 10px;
+		}
+		dd {
+			padding: 7px 10px 7px 10em;
+			margin-bottom: 10px;
+			background-color: $color-sub2;
+			@include media(sp) {
+				padding: 7px 10px;
+			}
+		}
+	}
+	&__define2 {
+		@include define-style;
+		dt {
+			width: 8em;
+		}
+		dd {
+			padding-left: 10em;
+			border-bottom: 1px solid #ccc;
+		}
+	}
+	&__append {
+		max-width: 700px;
+		margin: 0 auto 80px;
+		@include font-size(14);
+	}
+	&__fig {
+		max-width: 800px;
+		margin: 0 auto 80px;
+	}
+}
+
+// mobileArea ------------------------------
+.mobileArea {
+	@include media(pc) {
+		display: none;
+	}
+	&--inner {
+		padding: 20px 10px;
+	}
+	&__btn {
+		li + li {
+			margin-top: 10px;
+		}
+	}
+}
+
+// about ------------------------------
+.about {
+	@include space;
+	&__fig1 {
+		max-width: 400px;
+		margin: 0 auto;
+	}
+	&__fig2 {
+		display: flex;
+		flex-flow: row;
+		justify-content: space-between;
+		@include media(sp) {
+			flex-flow: column;
+			align-items: center;
+		}
+		li {
+			width: 32%;
+			@include media(sp) {
+				width: 100%;
+				max-width: 400px;
+			}
+			+ li {
+				@include media(sp) {
+					margin-top: 10px;
+				}
+			}
+		}
+	}
+	&__define {
+		padding-left: 1em;
+		line-height: 2;
+		dt {
+			clear: left;
+			float: left;
+			width: 5em;
+			font-weight: bold;
+			@include media(sp) {
+				width: 100%;
+			}
+		}
+		dd {
+			padding-left: 6em;
+			@include media(sp) {
+				padding-left: 0;
+			}
+		}
+	}
+}
+
+// outline ------------------------------
+.outline {
+	&__tbl {
+		max-width: 750px;
+		margin-bottom: 50px;
+		&__logo {
+			max-width: 300px;
+		}
+	}
+	&__btn {
+		max-width: 600px;
+		margin: 0 auto;
+	}
+}
+
+// point ------------------------------
+.point {
+	&__title {
+		@include indent(2);
+		&__num {
+			display: inline-block;
+			background-color: $color-main;
+			color: white;
+			width: 50px;
+			height: 50px;
+			border-radius: 50%;
+			@include font-size(30);
+			text-align: center;
+			padding-left: 50px;
+			margin-right: 10px;
+		}
+	}
+}
+
+// target ------------------------------
+.target {
+	&__pageNav {
+		max-width: 400px;
+		margin: 0 auto 50px;
+	}
+	&__center {
+		text-align: center;
+	}
+	&__list {
+		li {
+			display: inline-block;
+			@include font-size(18);
+			margin-right: 1em;
+			line-height: 2;
+			&:before {
+				content: "●";
+				color: $color-type01;
+			}
+		}
+	}
+	&__fig {
+		display: flex;
+		flex-flow: row;
+		justify-content: space-around;
+		@include media(sp) {
+			flex-flow: column;
+			align-items: center;
+		}
+		&-1 {
+			li {
+				width: 32%;
+			}
+		}
+		&-2 {
+			li {
+				width: 48%;
+			}
+		}
+		li {
+			@include media(sp) {
+				width: 100%;
+				max-width: 400px;
+			}
+			+ li {
+				@include media(sp) {
+					margin-top: 10px;
+				}
+			}
+		}
+	}
+}
+
+// exhibit-fee ------------------------------
+.exhibit-fee {
+	background-color: white;
+	@include space-btm;
+	&__pageNav {
+		max-width: 800px;
+		margin: 0 auto;
+	}
+}
+.apply {
+	&--inner {
+		max-width: $width-main;
+		@include media(sp) {
+			padding-left: 10px;
+			padding-right: 10px;
+		}
+	}
+	&__deadline {
+		margin-top: 15px;
+		color: red;
+	}
+	&__define {
+		dt {
+			clear: left;
+			float: left;
+			width: 10em;
+			font-weight: bold;
+			@include media(sp) {
+				float: none;
+				width: 100%;
+			}
+		}
+		dd {
+			padding-left: 12em;
+			padding-bottom: 5px;
+			margin-bottom: 15px;
+			border-bottom: 1px solid #ccc;
+			@include media(sp) {
+				padding-left: 0;
+			}
+		}
+	}
+}
+
+// exhibit-option ------------------------------
+.exhibit-option {
+	background-color: white;
+	@include space;
+	.booth {
+		padding-bottom: 0;
+	}
+}
+
+// qanda ------------------------------
+.qanda {
+	padding-bottom: 100px;
+	&--inner {
+		max-width: 800px;
+	}
+}
+
+// youtube ------------------------------
+.youtube {
+	@include space;
+	&--inner {
+		max-width: 1000px;
+	}
+	&__unit {
+		display: flex;
+		flex-flow: row;
+		justify-content: space-around;
+		@include media(sp) {
+			flex-flow: column;
+			align-items: center;
+		}
+		li {
+			width: 45%;
+			@include media(sp) {
+				width: 90%;
+			}
+			iframe {
+				width: 100%;
+			}
+			+ li {
+				@include media(sp) {
+					margin-top: 20px;
+				}
+			}
+		}
+	}
+}
+

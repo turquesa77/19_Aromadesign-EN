@@ -1,0 +1,52 @@
+/* Scss Document */
+
+// qanda ------------------------------
+.qanda {
+	&__define {
+		dt, dd {
+			border-top: 1px solid #ccc;
+			border-left: 1px solid #ccc;
+			border-right: 1px solid #ccc;
+			padding: 20px 20px 20px 70px;
+			position: relative;
+		}
+		@mixin qa-icon {
+				position: absolute;
+				top: 10px;
+				left: 10px;
+				@include font-size(18);
+				color: white;
+				padding: 10px 18px;
+		}
+		dt {
+			cursor: pointer;
+			&:last-of-type {
+				border-bottom: 1px solid #ccc;
+			}
+			// gradation -----
+			background: #efefef;
+			background: -moz-linear-gradient(top, #efefef 0%, #f7f7f7 50%, #efefef 51%, #ffffff 100%);
+			background: -webkit-linear-gradient(top, #efefef 0%,#f7f7f7 50%,#efefef 51%,#ffffff 100%);
+			background: linear-gradient(to bottom, #efefef 0%,#f7f7f7 50%,#efefef 51%,#ffffff 100%);
+			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#efefef', endColorstr='#ffffff',GradientType=0 );
+			// gradation end -----
+			&:before {
+				content: "Q";
+				background-color: $color-main;
+				@include qa-icon;
+			}
+		}
+		dd {
+			display: none;
+			&:last-of-type {
+				border-top: transparent;
+				border-bottom: 1px solid #ccc;
+			}
+			&:before {
+				content: "A";
+				background-color: $color-type02;
+				@include qa-icon;
+			}
+		}
+	}
+}
